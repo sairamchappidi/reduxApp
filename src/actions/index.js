@@ -8,10 +8,13 @@ import {FETCH_DATA,
 import data from '../data/points.js';
 
 export function fetchData(){
-    return {
-        type:FETCH_DATA,
-        payLoad:data
-    }
+   			axios.get('https://api.myjson.com/bins/mzspv').then((response)=>{
+                        console.log(response.data);
+                        dispatch(asyncRequestSuccess(response.data.teams));
+                        
+               }).catch((error)=>{
+                        dispatch(asyncRequestfailed());
+               })
 }
 export const fetchRequest = ()=>{
     return {

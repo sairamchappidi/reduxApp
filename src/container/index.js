@@ -7,12 +7,15 @@ import TableBody from '../components/tableBody';
 
 class PointsTable extends Component{
 	_handleCLick = () =>{
-		//this.props.fetchData();
-		this.props.asyncFetch();
+		this.props.fetchData();
+		//this.props.asyncFetch();
 	}
 	render(){
-		let {teams} = this.props
-		if(teams){
+		let {teams, inProgress, error} = this.props
+		if(inProgress){
+			return(<div className="loader"></div>)
+		}
+		else if(teams && !inProgress){
 			return(
 			<div>
 			  	<table className='highlight'>
@@ -22,6 +25,9 @@ class PointsTable extends Component{
       			
       		</div>
 			)
+		}
+		else if(!teams && !inProgress && error != null){
+			return (<div>{error}</div>)
 		}
 		else{
 			return(
@@ -33,7 +39,9 @@ class PointsTable extends Component{
 const mapStateToProps = (state)=>{
 	let {PointsData}  = state;
 	return {
-		teams:PointsData.data
+		inProgress:PointsData.inProgress,
+		teams:PointsData.data,
+		error:PointsData.error
 	}
 	
 };

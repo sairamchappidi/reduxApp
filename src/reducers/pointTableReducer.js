@@ -7,7 +7,7 @@ import {
 } from '../constants';
 
 const initialState = {inProgress:false,
-						error:''};
+						error:null};
 const pointTableReducer = (state=initialState,action)=>{
 	switch (action.type) {
 		case FETCH_DATA:
