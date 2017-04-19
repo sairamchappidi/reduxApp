@@ -7,8 +7,8 @@ import TableBody from '../components/tableBody';
 
 class PointsTable extends Component{
 	_handleCLick = () =>{
-		this.props.fetchData();
-		//this.props.asyncFetch();
+		// this.props.fetchData();
+		this.props.asyncFetch();
 	}
 	render(){
 		let {teams, inProgress, error} = this.props

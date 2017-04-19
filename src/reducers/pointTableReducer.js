@@ -6,27 +6,25 @@ import {
     REQUESTED_FAILED
 } from '../constants';
 
-const initialState = {inProgress:false,
-						error:null};
+const initialState = {inProgress:false, error:null};
+
 const pointTableReducer = (state=initialState,action)=>{
 	switch (action.type) {
 		case FETCH_DATA:
 			
-			return Object.assign({},state,action.payLoad);
+			return {...state, data:action.payLoad};
 		case REQUESTED_DATA:
 			
-			return Object.assign({},state,{inProgress:true});
+			return {...state, inProgress:true};
 		case REQUESTED_SUCCESS:
 		
-			return Object.assign({},state,{inProgress:false,
-											data:action.payLoad});
+			return {...state, inProgress:false, data:action.payLoad};
 		case REQUESTED_FAILED:
 			
-			return Object.assign({},state,{inProgress:false,
-											error:action.errorMsg});
+			return {...state, inProgress:false, error:action.errorMsg};
 		default:
 		
 			return state;
 	}
 }
-export default pointTableReducer;
+export default pointTableReducer; 
